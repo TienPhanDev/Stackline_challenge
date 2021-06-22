@@ -8,8 +8,26 @@
     "start": "next start"
   },
   "dependencies": {
+    "@headlessui/react": "^1.3.0",
+    "@tailwindcss/forms": "^0.3.2",
+    "@tailwindcss/typography": "^0.4.0",
+    "autoprefixer": "^10.2.5",
+    "chart.js": "2.9.4",
     "next": "10.x",
+    "postcss": "^8.2.14",
     "react": "17.x",
-    "react-dom": "17.x"
+    "react-dom": "17.x",
+    "tailwindcss": "^2.1.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.26.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.23.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-unused-imports": "^1.1.0"
   }
 }
