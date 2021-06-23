@@ -44,14 +44,15 @@ export default function LineChart() {
             borderColor: "gray",
             data: wholesale(),
             fill: false,
-            tension: 0.3
+            tension: 0.4
           },
           {
             fill: false,
             backgroundColor: "blue",
             borderColor: "blue",
             data: retailInfo(),
-            tension: 0.3
+            fill: false,
+            tension: 0.4
           },
         ],
       },
