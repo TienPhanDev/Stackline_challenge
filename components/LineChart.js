@@ -1,39 +1,62 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import stackline_frontend_assessment_data_2021 from "../stackline_frontend_assessment_data_2021.json"
 import Chart from "chart.js";
 
 export default function LineChart() {
-  React.useEffect(() => {
-    var config = {
+  // below is an example of an API call
+  const [data, setData] = useState(stackline_frontend_assessment_data_2021[0]);
+  const [sales, setSales] = useState();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        'https://hn.algolia.com/api/v1/search?query=example',
+      );
+      setSales(result.data);
+    };
+    fetchData();
+  }, []);
+
+  const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL","AUG", "SEP", "OCT", "NOV", "DEC"];
+
+  const retailInfo = () => {
+    return data.sales.map((sale) => {
+      return sale.retailSales
+    })
+  }
+
+  const wholesale = () => {
+    return data.sales.map((sale) => {
+      return sale.wholesaleSales
+    })
+  }
+
+  useEffect(() => {
+    let config = {
       type: "line",
       data: {
-        labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
-        ],
+        labels: months,
         datasets: [
           {
-            label: new Date().getFullYear(),
-            backgroundColor: "#4c51bf",
-            borderColor: "#4c51bf",
-            data: [65, 78, 66, 44, 56, 67, 75],
+            display: false,
+            backgroundColor: "gray",
+            borderColor: "gray",
+            data: wholesale(),
             fill: false,
+            tension: 0.3
           },
           {
-            label: new Date().getFullYear() - 1,
             fill: false,
-            backgroundColor: "#fff",
-            borderColor: "#fff",
-            data: [40, 68, 86, 74, 56, 60, 87],
+            backgroundColor: "blue",
+            borderColor: "blue",
+            data: retailInfo(),
+            tension: 0.3
           },
         ],
       },
       options: {
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
         responsive: true,
         title: {
           display: false,
@@ -42,10 +65,11 @@ export default function LineChart() {
         },
         legend: {
           labels: {
-            fontColor: "white",
+            fontColor: "black",
           },
           align: "end",
           position: "bottom",
+          display: false
         },
         tooltips: {
           mode: "index",
@@ -59,7 +83,8 @@ export default function LineChart() {
           xAxes: [
             {
               ticks: {
-                fontColor: "rgba(255,255,255,.7)",
+                fontColor: "gray",
+                maxTicksLimit: 12
               },
               display: true,
               scaleLabel: {
@@ -112,16 +137,13 @@ export default function LineChart() {
         <div className="rounded-t mb-0 px-4 py-3 bg-transparent">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
-              <h6 className="uppercase text-blueGray-100 mb-1 text-xs font-semibold">
-                Overview
-              </h6>
-              <h2 className="text-white text-xl font-semibold">Line Chart Data</h2>
+              <h2 className="text-white text-sm mt-2">Retail Sales</h2>
             </div>
           </div>
         </div>
-        <div className="p-4 flex-auto">
+        <div className="px-8 flex-auto mx-8">
           {/* Chart */}
-          <div className="relative h-350-px">
+          <div className="relative h-30-vh">
             <canvas id="line-chart"></canvas>
           </div>
         </div>

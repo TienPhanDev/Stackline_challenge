@@ -7,10 +7,10 @@ export default function Container() {
   return (
     <>
       <Example/>
-        <div className="grid grid-cols-3 gap-4">
-            <ItemDetails />
-            <div className="col-span-2">
-              <LineChart/>
+        <div className="grid grid-cols-4 gap-4 mt-10">
+            <ItemDetails/>
+            <div className="col-span-3">
+            <LineChart/>
             </div>
         </div>
       <Footer/>

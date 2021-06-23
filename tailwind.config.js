@@ -2,7 +2,6 @@ const defaultTheme = require("tailwindcss/defaultTheme")
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  mode: "jit",
   purge: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
@@ -10,7 +9,8 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     colors: {
-      blue: colors.cyan[900]
+      blue: colors.cyan[900],
+      gray: colors.gray[100]
     },
     extend: {
       fontFamily: {
